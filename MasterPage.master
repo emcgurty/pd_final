@@ -1,0 +1,292 @@
+<%@ Master Language="C#" EnableViewState="true"        AutoEventWireup="true" 
+CodeFile="MasterPage.master.cs" Inherits="MasterPage"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<% Response.CacheControl = "private"; %>
+<% Response.AddHeader ("Pragma", "no-cache") ;%>
+<% Response.Expires = 0; %>
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head id="MasterPageHeader" runat="server">
+
+
+<title>PDs</title>
+<link rel="stylesheet" type="text/css" href="Docs/default.css" title="C_Style">
+
+<script language="JavaScript">
+
+  window.history.forward(1);
+
+</script>
+
+<script language=javascript >
+
+var min=12;
+var max=24;
+
+function increaseFontSize() 
+{
+   
+   var vMasterText = document.getElementById("<%=txtPXSize.ClientID%>");
+   var p = document.getElementsByTagName("span");
+   for(i=0;i<p.length;i++) 
+      {
+      if(p[i].style.fontSize) 
+      {
+         var s = parseInt(p[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var s = 16;
+      }
+      
+      if(s!=max) 
+      {
+         s += 1;
+      }
+      
+      p[i].style.fontSize = s+"px"
+      }
+      
+      
+      var d = document.getElementsByTagName("div");
+      for(i=0;i<d.length;i++) 
+      {
+      if(d[i].style.fontSize) 
+      {
+         var da = parseInt(d[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var da = 16;
+      }
+      
+      if(da!=max) 
+      {
+         da += 1;
+      }
+      d[i].style.fontSize = da+"px"
+      }
+      
+      var td = document.getElementsByTagName("td");
+      for(i=0;i<td.length;i++) 
+      {
+      if(td[i].style.fontSize) 
+      {
+         var tda = parseInt(td[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var tda = 16;
+      }
+      
+      if(tda!=max) 
+      {
+         tda += 1;
+      }
+      td[i].style.fontSize = tda+"px"
+      }
+           
+        vMasterText.value = s;
+      
+     
+}
+
+
+function decreaseFontSize() 
+{ 
+  
+   var vMasterText = document.getElementById("<%=txtPXSize.ClientID%>");
+   var p = document.getElementsByTagName("span");
+
+   for(i=0;i<p.length;i++) 
+   {
+      if(p[i].style.fontSize) 
+      {
+         var s = parseInt(p[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var s = 16;
+      }
+      
+      if(s!=min) 
+      {
+         s -= 1;
+      }
+      
+      p[i].style.fontSize = s+"px"
+   }   
+   
+   
+   var d = document.getElementsByTagName("div");
+   for(i=0;i<d.length;i++) 
+   {
+      if(d[i].style.fontSize) 
+      {
+         var da = parseInt(d[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var da = 16;
+      }
+      if(da!=min) 
+      {
+         da -= 1;
+      }
+      d[i].style.fontSize = da+"px"
+   }   
+       
+   var td = document.getElementsByTagName("td");
+   for(i=0;i<td.length;i++) 
+   {
+      if(td[i].style.fontSize) 
+      {
+         var tda = parseInt(td[i].style.fontSize.replace("px",""));
+      } 
+      else 
+      {
+         var tda = 16;
+      }
+      if(tda!=min) 
+      {
+         tda -= 1;
+      }
+      td[i].style.fontSize = tda+"px"
+   }   
+      vMasterText.value = s;
+        
+}
+
+
+</script>
+
+
+</head>
+<body leftmargin=0 topmargin=0>
+
+<form id="frmMaster" runat="server"  method=post>
+  
+  
+  <asp:HiddenField runat=server ID="txtPXSize" Value=12 >
+  </asp:HiddenField>
+  
+    
+    <table style="width: 100%; height: 100%" cellpadding=0 cellspacing=0>
+        <tr >
+            <td class=brgreen style="width: 14%; vertical-align: middle; text-align: center;top:0" rowspan="3">
+                
+                <asp:Label ID="lblBrighten" runat="server" Style="vertical-align: middle; color: #336600;
+                    font-family: Times New Roman, Calibri, Arial; text-align: center; font-size: 14px;font-weight: bold;" Text="We brighten your world."
+                    Width="86px" Font-Size="16px"></asp:Label>
+                &nbsp;&nbsp; &nbsp; </td>
+            <td style="width: 86%">
+                &nbsp;<asp:Image ID="imgLogo" runat="server"  ImageUrl="~/Docs/Company_Logo.JPG" /></td>
+        </tr>
+        <tr>
+            <td style="width: 86%; height: 14px;">
+                &nbsp;<asp:Label  ID="lblTitleOne" runat="server" Text="PDs" Width="513px" 
+                style="font-size: 14px; color: black; font-family: Times New Roman, Calibri, Arial; position: static" Font-Size="14px"></asp:Label></td>
+        </tr>
+    
+        <tr>
+            <td  class=bgreen style="width: 86%; height: 21px;">
+                &nbsp;<asp:label ID="lblTitleTwo" runat="server" Style="font-size: 14px; color: black;
+                font-family: Times New Roman, Calibri, Arial; position: static" Width="240px" Font-Size="13px"></asp:label>
+                <asp:label ID="lblTextSize" runat="server" 
+                Style="font-size: 14px; color: blue;
+                font-family: Times New Roman, Calibri, Arial; position: static" Text="Increase or Decrease Text Size:">
+                </asp:label>&nbsp;&nbsp;
+                <a href="javascript:decreaseFontSize();"><img src="Docs/font-dec.gif" border=0 style="vertical-align: bottom; text-align: left" /></a>&nbsp; &nbsp;
+                <a href="javascript:increaseFontSize();"><img src="Docs/font-inc.gif" border=0 style="vertical-align: bottom; text-align: left" /></a></td>
+            </tr>
+          
+        
+        <tr>
+            <td  class=rightgreen style="width: 14%; vertical-align: top; text-align: center;">
+                       <br /> 
+                        
+                        <asp:Label ID="lblCurrentUserName" runat="server" 
+                        Style="font-size: 14px; color: blue;font-family: Times New Roman, Calibri, Arial" Font-Size="14px"  ></asp:Label>
+                        
+                        
+
+                        <div runat=server id="divClickToEdit" style="display:none">
+                        <br /> 
+                        <asp:HyperLink ID="hyperEditUserInformation" runat="server"
+                         NavigateUrl="~/RegisterNewUser.aspx?Status=Existing"            
+                        Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" 
+                        Target="_self" >Edit User Information</asp:HyperLink>
+                        </div>
+
+                        
+                        <div runat=server id="divProductSearch" style="display:none">
+                        <br /> <br /> 
+                        <asp:HyperLink ID="hyperProductSearch" runat="server" NavigateUrl="~/ProductSearchCriteria.aspx"            
+                        Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Target="_self" Font-Size="14px">Product Search</asp:HyperLink>
+                        </div>
+                        
+                        
+                        <div runat=server id="divGotoQueue" style="display:none">
+                        <br /><br /> 
+                        <asp:HyperLink ID="hyperGoToQueues" runat="server" style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" 
+                        NavigateUrl="Suspend.aspx?build=0" Target="_self" Font-Size="14px" >Go to Declarations
+                        </asp:HyperLink>
+                        </div>
+                        
+                        
+                        <div runat=server id="divLogout" style="display:none">
+                        <br /> <br /> 
+                        <asp:HyperLink ID="hyperLogout" 
+                        runat="server" NavigateUrl="~/Default.aspx?Logout=0" 
+                        Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Font-Size="14px">Logout
+                       </asp:HyperLink>
+                        </div>
+                        
+                        
+                        <div runat=server id="divContactUs" style="display:none">
+                        <br /><br /> 
+                        <asp:HyperLink ID="hyperContact_Us" runat="server" Font-Underline="True" NavigateUrl="~/Contact_Us.aspx" Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Font-Size="14px">
+                        Contact Us
+                        </asp:HyperLink>
+                        </div>
+                
+                        
+                        <div runat=server id="divRegisteredUser" style="display:none">
+                        <br /><br /> 
+                        <asp:HyperLink ID="hyperRegisteredUser" runat="server" Font-Underline="True" NavigateUrl="~/Default.aspx" Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Font-Size="14px">
+                        Registered User Login
+                        </asp:HyperLink>
+                        </div>
+                        
+                        <div runat=server id="divRegisterToView" style="display:none">
+                        <br /><br /> 
+                        <asp:HyperLink ID="hyperRegisterToView" runat="server" Font-Underline="True" NavigateUrl="~/ValidateNewUser.aspx?Current=0"
+                        Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Font-Size="14px" >
+                        Register to View a PD                
+                        </asp:HyperLink>
+                          <br /><br /> 
+                        </div>
+                        </td>
+                        <td style="width: 86%; vertical-align: top; text-align: left;">
+                       
+                        
+               <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+                &nbsp;
+            
+            </td>
+        </tr>
+        <tr>
+            <td  class=tbgreen style="vertical-align: top; width: 14%; text-align: center">
+                &nbsp;</td>
+            <td class=tbgreen style="width: 86%">
+                <asp:Label ID="lblCopyright" runat="server" Style="font-size: 14px; color: blue; font-family: Times New Roman, Calibri, Arial" Font-Size="14px"></asp:Label></td>
+        </tr>
+        
+    </table>
+        
+ 
+    </form>
+</body>
+</html>
